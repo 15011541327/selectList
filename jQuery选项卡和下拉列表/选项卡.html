@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<style>
+*{margin:0;padding:0;list-style:none;}
+div{margin:100px;}
+#title{width:300px;height:24px;background:#eee;}
+#title li{width:70px;background:#f0f;float:left;border:1px solid #ccc;}
+#content{position:relative;}
+#content li{width:300px;height:200px;background:#ff0;border:1px solid #ccc;position:absolute;}
+
+#zong .xiaoguo{background:#ccc;z-index:1;}
+
+</style>
+
+<div id="zong">
+	<ul id="title">
+		<li class="xiaoguo">title 1</li>
+		<li>title 2</li>
+		<li>title 3</li>
+		<li>title 4</li>
+	</ul>
+	<ul id="content">
+		<li class="xiaoguo">content 1111111</li>
+		<li>content 222222222</li>
+		<li>content 3333333333</li>
+		<li>content 444444444</li>
+	</ul>
+</div>
+
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+$(function(){
+	$('#title li').click(function(){
+		$('#title li').removeClass('xiaoguo');
+		$(this).addClass('xiaoguo');
+		$('#content li').removeClass('xiaoguo').hide();
+		$('#content li').eq($(this).index()).addClass('xiaoguo').show();
+	})
+})
+</script>
+
+

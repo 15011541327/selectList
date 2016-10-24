@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+        *{margin: 0;padding: 0;list-style: none;}
+        #wrap{width: 400px;height: 300px;margin:0 auto;}
+        #head{width:400px;height:40px;background-color:red;}
+        #head li{width: 100px;height:40px;background-color:greenyellow;float:left;}
+        #content{width:400px;height:360px;background-color:blueviolet;position:relative;}
+        #content li{width:400px;height:360px;background-color:yellow;position:absolute;}
+        #wrap .show{z-index: 1;background-color:orange;}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <ul id="head">
+            <li>导航1</li>
+            <li>导航1</li>
+            <li>导航1</li>
+            <li>导航1</li>
+        </ul>
+        <ul id="content">
+            <li>内容1111111111111111111111111</li>
+            <li>内容222222222222222</li>
+            <li>内容333333333333333</li>
+            <li>内容44444444444444444444444</li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $('#head li').hover(function(){
+        $(this).addClass('show');
+        $('#content li').eq($(this).index()).addClass('show');
+    },function(){
+        $(this).removeClass('show');
+        $('#content li').eq($(this).index()).removeClass('show');
+    });
+
+</script>
+</body>
+</html>

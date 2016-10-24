@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <style type="text/css">
+        *{margin: 0;padding: 0;list-style: none;}
+        #nav{margin:100px auto 0;width: 300px;height:50px;}
+        #nav ul{width: 300px;height: 50px;}
+        #nav li{float:left;width:100px;height:50px;margin:0 20px;text-align: center;}
+        #nav ul li.active{background-color: magenta;}
+        #content{height:200px;border: 1px solid red;display: none;}
+        #content ul{width: 500px;margin:0 auto;display:none;}
+        #content ul li{float:left;width: 150px;height:150px;}
+        .clear{content:'';display: table;clear: both;}
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul class="clear">
+            <li>分类1</li>
+            <li>分类2</li>
+        </ul>
+    </div>
+    <div id="content">
+        <ul class="clear">
+            <li>分类1商品</li>
+            <li>分类1商品</li>
+            <li>分类1商品</li>
+        </ul>
+        <ul class="clear">
+            <li>分类2商品</li>
+            <li>分类2商品</li>
+            <li>分类2商品</li>
+        </ul>
+    </div>
+
+    <script src="jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    var timing;
+   $('#nav li').hover(function () {
+       //获取当前的下标
+        var index = $(this).index();
+       if($("#content").is(":hidden")){//显示隐藏的div；
+           $("#content").slideDown();
+       }
+       $("#nav li").removeClass('.active');//清除所有的active;
+       $(this).addClass('.active');//给当前的li添加div；
+       $("#content ul").hide().eq(index).show();//隐藏所有的ul，显示当前的ul；
+   },function () {
+       $(this).removeClass('.active');
+        timing = setTimeout(function () {//延迟200毫秒，隐藏商品div
+            $("#content").slideUp();
+        },200)
+   });
+    $("#content").hover(function () {
+        clearTimeout(timing);           //div不会延时消失；
+    },function () {
+        timing = setTimeout(function () {//延迟200毫秒，隐藏商品div
+            $("#content").slideUp();
+        },200)
+    })
+
+</script>
+</body>
+</html>

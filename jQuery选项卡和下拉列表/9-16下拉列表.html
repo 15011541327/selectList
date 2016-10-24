@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+            list-style: none;
+        }
+        .nav,
+        .commodity-box{
+            width:100%;
+        }
+        .nav{
+            height:35px;
+            line-height: 35px;
+        }
+        .nav ul::after,
+        .commodity-box ul::after{
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        .nav ul{
+            width:200px;
+            margin: 0 auto;
+        }
+        .nav li{
+            float: left;
+            padding:0 20px;
+            margin: 0 10px;
+        }
+        .nav li.active{
+            background: #0f0;
+        }
+        .commodity-box{
+            height:200px;
+            border: 1px solid #f00;
+            display: none;
+        }
+        .commodity-box ul{
+            display: none;
+            width:500px;
+            margin: 0 auto;
+        }
+        .commodity-box li{
+            float: left;
+            width:150px;
+            height:150px;
+        }
+    </style>
+</head>
+<body>
+<div class="nav">
+    <ul>
+        <li>分类1</li>
+        <li>分类2</li>
+    </ul>
+</div>
+
+<div class="commodity-box">
+    <ul>
+        <li>分类1商品</li>
+        <li>分类1商品</li>
+        <li>分类1商品</li>
+    </ul>
+    <ul>
+        <li>分类2商品</li>
+        <li>分类2商品</li>
+        <li>分类2商品</li>
+    </ul>
+</div>
+<script src="jquery-1.12.4.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var timing;//延迟执行
+        $(".nav li").hover(function () {
+            clearTimeout(timing);
+            $(".commodity-box").slideDown();
+            $(".commodity-box ul").hide().eq($(this).index()).show();
+            $('.nav li').removeClass('active');
+            $(this).addClass('active');
+
+        },function () {
+            $('.nav li').removeClass('active');
+            timing = setTimeout(function () {//延迟200毫秒
+                $(".commodity-box").slideUp();
+            },200)
+        });
+        $(".commodity-box").hover(function () {
+            clearTimeout(timing);
+        },function () {
+            setTimeout(function () {
+                $('.commodity-box').slideUp();
+            },200)
+        });
+    })
+</script>
+</body>
+</html>
